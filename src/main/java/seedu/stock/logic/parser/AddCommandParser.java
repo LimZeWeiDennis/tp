@@ -42,11 +42,11 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_DUPLICATE_HEADER_FIELD, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get().toLowerCase());
         SerialNumber serialNumber = SerialNumber.generateDefaultSerialNumber();
-        Source source = ParserUtil.parseSource(argMultimap.getValue(PREFIX_SOURCE).get());
+        Source source = ParserUtil.parseSource(argMultimap.getValue(PREFIX_SOURCE).get().toLowerCase());
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
-        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
+        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get().toLowerCase());
 
         Stock stock = new Stock(name, serialNumber, source, quantity, location);
 

@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.stock.testutil.Assert.assertThrows;
+import static seedu.stock.testutil.TypicalStocks.APPLE;
+import static seedu.stock.testutil.TypicalStocks.BANANA;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -55,8 +57,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Stock apple = new StockBuilder().withName("Apple").build();
-        Stock banana = new StockBuilder().withName("Banana").build();
+        Stock apple = new StockBuilder(APPLE).build();
+        Stock banana = new StockBuilder(BANANA).build();
         AddCommand addAppleCommand = new AddCommand(apple);
         AddCommand addBananaCommand = new AddCommand(banana);
 

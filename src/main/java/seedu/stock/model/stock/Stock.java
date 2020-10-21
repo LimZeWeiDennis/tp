@@ -172,8 +172,7 @@ public class Stock {
     }
 
     /**
-     * Returns true if both stocks of the same name, serialnumber and source.
-     * This defines a weaker notion of equality between two stocks.
+     * Returns true if both stocks of the same name and source, or the same serial number.
      */
     public boolean isSameStock(Stock otherStock) {
         if (otherStock == this) {
@@ -181,15 +180,13 @@ public class Stock {
         }
 
         return otherStock != null
-                && otherStock.getName().equals(getName())
-                && otherStock.getSerialNumber().equals(getSerialNumber())
-                && otherStock.getSource().equals(getSource())
-                && (otherStock.getBookmarked() == (getBookmarked()));
+                && ((otherStock.getName().equals(getName())
+                && otherStock.getSource().equals(getSource()))
+                || otherStock.getSerialNumber().equals(getSerialNumber()));
     }
 
     /**
-     * Returns true if both stocks have the same identity and data fields.
-     * This defines a stronger notion of equality between two stocks.
+     * Returns true if both stocks have the same name and source, or the same serial number.
      */
     @Override
     public boolean equals(Object other) {
@@ -202,11 +199,9 @@ public class Stock {
         }
 
         Stock otherStock = (Stock) other;
-        return otherStock.getName().equals(getName())
-                && otherStock.getSerialNumber().equals(getSerialNumber())
-                && otherStock.getSource().equals(getSource())
-                && otherStock.getQuantity().equals(getQuantity())
-                && otherStock.getLocation().equals(getLocation());
+        return (otherStock.getName().equals(getName())
+                && otherStock.getSource().equals(getSource()))
+                || otherStock.getSerialNumber().equals(getSerialNumber());
     }
 
     @Override

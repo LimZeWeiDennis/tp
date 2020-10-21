@@ -41,7 +41,7 @@ public class Name {
 
     @Override
     public String toString() {
-        return fullName;
+        return fullName.substring(0, 1).toUpperCase() + fullName.substring(1);
     }
 
     @Override

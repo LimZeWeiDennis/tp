@@ -24,19 +24,35 @@ public class StockTest {
         // null -> returns false
         assertFalse(APPLE.isSameStock(null));
 
-        // different serialnumber and source -> returns false
+        // same serialnumber, different attributes -> returns true
         Stock editedApple = new StockBuilder(APPLE).withSerialNumber(VALID_SERIAL_NUMBER_BANANA)
-                .withSource(VALID_SOURCE_BANANA).build();
-        assertFalse(BANANA.isSameStock(editedApple));
+                .build();
+        assertTrue(BANANA.isSameStock(editedApple));
 
-        // different name -> returns false
-        editedApple = new StockBuilder(APPLE).withName(VALID_NAME_BANANA).build();
-        assertFalse(BANANA.isSameStock(editedApple));
-
-        // same name, same serial number, same source, different attributes -> returns true
-        editedApple = new StockBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA)
+        // same name, same source, different attributes -> returns true
+        editedApple = new StockBuilder(APPLE)
+                .withSerialNumber(VALID_SERIAL_NUMBER_BANANA)
+                .withQuantity(VALID_QUANTITY_BANANA)
                 .withLocation(VALID_LOCATION_BANANA).build();
         assertTrue(APPLE.isSameStock(editedApple));
+
+        // same name, same source, same serialnumber, different attributes -> returns true
+        editedApple = new StockBuilder(APPLE)
+                .withSerialNumber(VALID_SERIAL_NUMBER_BANANA)
+                .withName(VALID_NAME_BANANA)
+                .withSource(VALID_SOURCE_BANANA).build();
+        assertTrue(BANANA.isSameStock(editedApple));
+
+        // different name, same source, different serialnumber -> returns false
+        editedApple = new StockBuilder(APPLE).withSource(VALID_SOURCE_BANANA)
+                .build();
+        assertFalse(BANANA.isSameStock(editedApple));
+
+        // same name, different source, different serialnumber -> returns false
+        editedApple = new StockBuilder(APPLE).withName(VALID_NAME_BANANA)
+                .build();
+        assertFalse(BANANA.isSameStock(editedApple));
+
     }
 
     @Test
@@ -54,27 +70,27 @@ public class StockTest {
         // different type -> returns false
         assertFalse(APPLE.equals(5));
 
-        // different person -> returns false
+        // different stock -> returns false
         assertFalse(APPLE.equals(BANANA));
 
-        // different name -> returns false
+        // different name, same serialnumber-> returns false
         Stock editedApple = new StockBuilder(APPLE).withName(VALID_NAME_BANANA).build();
-        assertFalse(APPLE.equals(editedApple));
+        assertTrue(APPLE.equals(editedApple));
 
-        // different serial number -> returns false
+        // different serial number, same name, same source-> returns false
         editedApple = new StockBuilder(APPLE).withSerialNumber(VALID_SERIAL_NUMBER_BANANA).build();
-        assertFalse(APPLE.equals(editedApple));
+        assertTrue(APPLE.equals(editedApple));
 
-        // different email -> returns false
+        // different source, same serialnumber -> returns true
         editedApple = new StockBuilder(APPLE).withSource(VALID_SOURCE_BANANA).build();
-        assertFalse(APPLE.equals(editedApple));
+        assertTrue(APPLE.equals(editedApple));
 
-        // different address -> returns false
+        // different Quantity -> returns true
         editedApple = new StockBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).build();
-        assertFalse(APPLE.equals(editedApple));
+        assertTrue(APPLE.equals(editedApple));
 
-        // different tags -> returns false
+        // different Location -> returns true
         editedApple = new StockBuilder(APPLE).withLocation(VALID_LOCATION_BANANA).build();
-        assertFalse(APPLE.equals(editedApple));
+        assertTrue(APPLE.equals(editedApple));
     }
 }
