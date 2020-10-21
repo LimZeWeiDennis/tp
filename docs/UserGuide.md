@@ -42,6 +42,8 @@ exhaustive of updating, searching and ordering supplies, via Command Line Interf
   e.g. add stock, delete stock, and find stock.
 * Storage into csv and json files.
 * Adding/Deleting items: Unique serial number generation per item per source company.
+* Adding/Deleting optional notes to stocks. <br>
+  e.g. important information to take note
 * Setting up: Personalized GUI.<br>
   e.g. company name displayed in the GUI, predefined color presets.
 * Bookmark feature.<br>
@@ -66,7 +68,9 @@ Adds a new stock into the inventory. Serial number for the new stock will be gen
     3. Quantity (default 0)
     4. Location in warehouse
 
-Format: `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`
+Format (the header fields can be in any order):<br>
+`add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`
+`add n/<name> s/<source of stock> l/<location in warehouse> q/<quantity>`
 
 ⚠ Each specific fields specified in the `add` command should only be entered once.<br>
 e.g. `add n/banana n/apple s/fairprice q/1000 l/Fruit section` is not a valid command.
@@ -84,7 +88,7 @@ Format (single): `delete sn/<serial number>`
 Format (multiple): `delete sn/<serial number> sn/<serial number 2> ...`
 
 ### Find stocks from inventory: `find`
-Displays a list of stocks found in the inventory that contains all keywords specified in any fields searched.
+Displays a list of stocks found in the inventory that contains all keywords specified in ANY fields searched.
 * Fields that can be searched:
     * Name
     * Serial Number
@@ -92,23 +96,27 @@ Displays a list of stocks found in the inventory that contains all keywords spec
     * Source of the stock
 
 Format (any combination of 1,2,3 or 4 of the fields): <br>
-`find n/<name keyword> <(optional) more keywords to be searched in name>` <br>
-`find sn/<serial number keyword> <(optional) more keywords to be searched in serial number>` <br>
-`find l/<location stored keyword> <(optional) more keywords to be searched in location>` <br>
-`find s/<source keyword> <(optional) more keywords to be searched in source>` <br>
-`find n/<name keyword> <(optional) more keywords> l/<location keyword> <(optional) more keywords>
-s/<source keyword> <(optional) more keywords>`
+* Single:
+    1. `find n/<name keyword(s) to be searched in stock name>` <br>
+    2. `find sn/<serial number keyword(s) to be searched in stock serial number>` <br>
+    3. `find l/<location stored keyword(s) to be searched in stock location stored>` <br>
+    4. `find s/<source keyword(s) to be searched in stock source>` <br>
+* Multiple:
+    1. `find n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number keyword(s)>` <br>
+
+⚠ Each specific fields specified in the `find` command should only be entered once.<br>
+e.g. `find n/banana n/apple s/fairprice l/Fruit section` is not a valid command.
 
 Search criteria: <br>
-Only stocks that contain all the search keywords for a field will be displayed. <br>
-* e.g. `find n/ChickenNuggets` will not match stock with Name: Chick. <br>
-* e.g. `find n/ChickenNuggets abcdef` will not match stock with Name: ChickenNuggets. <br>
+* Only stocks that contain all the search keywords for a field will be displayed. <br>
+    1. e.g. `find n/ChickenNuggets` will not match stock with Name: Chick. <br>
+    2. e.g. `find n/ChickenNuggets abcdef` will not match stock with Name: ChickenNuggets. <br>
 
-Search is case-insensitive.
-* e.g. `find n/ashLey` will match stock with Name: Ashley.
+* Search is case-insensitive.
+    1.e.g. `find n/ashLey` will match stock with Name: Ashley.
 
-Any stock with any field that contains all the search keywords in any of the fields searched will be displayed.
-* e.g.
+* Any stock with any field that contains all the search keywords in any of the fields searched will be displayed.
+    1. e.g.
 
 Stock | Details
 ------| --------
@@ -121,7 +129,7 @@ Stock | Details
 `find s/ntuc l/singapore` will match only Stock 1.
 
 ### Find exact stocks from inventory: `findexact`
-Displays a list of stocks found in the inventory that contains all keywords specified in all fields searched.
+Displays a list of stocks found in the inventory that contains all keywords specified in ALL fields searched.
 * Fields that can be searched:
     * Name
     * Serial Number
@@ -129,27 +137,31 @@ Displays a list of stocks found in the inventory that contains all keywords spec
     * Source of the stock
 
 Format (any combination of 1,2,3 or 4 of the fields): <br>
-`findexact n/<name keyword> <(optional) more keywords to be searched in name>` <br>
-`findexact sn/<serial number keyword> <(optional) more keywords to be searched in serial number>` <br>
-`findexact l/<location stored keyword> <(optional) more keywords to be searched in location>` <br>
-`findexact s/<source keyword> <(optional) more keywords to be searched in source>` <br>
-`findexact n/<name keyword> <(optional) more keywords> l/<location keyword> <(optional) more keywords>
-s/<source keyword> <(optional) more keywords>`
+* Single:
+    1. `findexact n/<name keyword(s) to be searched in stock name>` <br>
+    2. `findexact sn/<serial number keyword(s) to be searched in stock serial number>` <br>
+    3. `findexact l/<location stored keyword(s) to be searched in stock location stored>` <br>
+    4. `findexact s/<source keyword(s) to be searched in stock source>` <br>
+* Multiple:
+    1. `findexact n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number keyword(s)>` <br>
+
+⚠ Each specific fields specified in the `findexact` command should only be entered once.<br>
+e.g. `findexact n/banana n/apple s/fairprice l/Fruit section` is not a valid command.
 
 Search criteria: <br>
-Only stocks that contain all the search keywords for all fields will be displayed. <br>
-* e.g. `findexact n/ChickenNuggets s/ntuc`
-  will match stock with Name: Chick, Source: ntuc. <br>
-* e.g. `findexact n/Chicken sn/1111`
-  will match stock with Name: ChickenNuggets, SerialNumber: 1111. <br>
-* e.g. `findexact n/ChickenNuggets abcdef l/section b`
-  will not match stock with Name: ChickenNuggets, Location: section b.<br>
+* Only stocks that contain all the search keywords for all fields will be displayed. <br>
+    1. e.g. `findexact n/ChickenNuggets s/ntuc` 
+    will match stock with Name: Chick, Source: ntuc. <br>
+    2. e.g. `findexact n/Chicken sn/1111`
+    will match stock with Name: ChickenNuggets, SerialNumber: 1111. <br>
+    3. e.g. `findexact n/ChickenNuggets abcdef l/section b`
+    will not match stock with Name: ChickenNuggets, Location: section b.<br>
 
-Search is case-insensitive.
-* e.g. `findexact n/ashLey s/nTuC` will match stock with Name: Ashley, Source: ntuc.
+* Search is case-insensitive.
+    1. e.g. `findexact n/ashLey s/nTuC` will match stock with Name: Ashley, Source: ntuc.
 
-Any stock with fields containing all the search keywords in all the fields searched will be displayed.
-* e.g.
+* Any stock with fields containing all the search keywords in all the fields searched will be displayed.
+    1. e.g.
 
 Stock | Details
 ------| --------
@@ -224,6 +236,49 @@ to `50`.
 
 `update sn/NTUC1111 sn/NTUC1111 n/Apple juice` will change **Stock 1** and **Stock 3** name to `Apple juice`.
 
+### Adding notes to stock: `note`
+Adds a note to the stock specified, displayed in the notes column for that stock.
+Multiple notes can be added to the stock and each note will be indexed. <br>
+⚠ If notes are too long to be fully displayed in the notes column, ellipsis will be displayed in place of overrun.
+To view full notes for the stock, use the `noteview` command.
+
+* Required fields:
+    1. Serial number of stock
+    2. Note to add to stock
+
+Format: `note sn/<serial number> nt/<note>`
+
+Example Usages:
+Stock | Details
+------| --------
+**Stock 1** | Name: banana<br> Serial Number: ntuc1<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section
+**Stock 2** | Name: chicken<br> Serial Number: sheng siong1<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section
+
+`note sn/sheng siong1 nt/chicken will expire soon` will add note with index 1 in note column for Stock 2. <br>
+![chicken note 1](images/add_note1_to_stock.png)
+`note sn/sheng siong1 nt/chicken order will arrive wednesday` will add note with index 2 for Stock 2. <br>
+![chicken note 2](images/add_note2_to_stock.png)
+`note sn/ntuc1 nt/banana just arrived` will add note with index 1 in note column for Stock 1. <br>
+![banana note 1](images/add_note1_to_banana.png)
+
+### Deleting note(s) from stock: `notedelete`
+Deletes a note, specified by the note's index, from the stock specified.
+* Required fields:
+    1. Serial number of stock
+    2. Note index of note to delete 
+⚠ Note index must be an integer. 
+To delete ALL notes from a stock, note index to specify is 0.
+
+Format: `notedelete sn/<serial number> ni/<note index>`
+
+Example Usages:
+* Before: <br>
+![before notes](images/add_note1_to_banana.png)
+* After `notedelete sn/ntuc1 ni/1`: <br>
+![after note delete1](images/after_note_delete_1.png)
+* After `notedelete sn/ntuc1 ni/0`: <br>
+![after note delete0](images/after_note_delete_0.png)
+
 ### Generating statistics: `stats`
 Generates a statistical view in a pie chart depicting the target fields.
 * Required fields:
@@ -238,11 +293,19 @@ Format: `stats `, followed by one of the following:
 
 e.g. `stats st/source`, `stats st/source-qd-ntuc`
 
+### Generates a csv file that contains all stocks: `print`
+Generates a csv file that contains all stocks. Users may want to sort the stock using `sort` command
+to sort the stock in their preferred format before converting it into the csv file.
+
+Format (single): `print`
+
 ### Saving data
 Data (all stocks in inventory in json) is automatically saved to
 `[root directory]/data/stockbook.json` when any of these commands is executed:
 * add
 * delete
+* note
+* notedelete
 * update
 
 The set of used serial number sources is automatically saved to
@@ -301,6 +364,9 @@ Action | Format, Examples
 **Delete** | `delete sn/<serial number>`<br> e.g. `delete sn/100`
 **Find** | Any combination of 1, 2, 3 or 4 different fields: <br> `find n/<name>`<br>`find sn/<serial number>`<br>`find l/<location>`<br>`find s/<source of stock>`<br> `find n/<name> l/<location> s/<source of stock>` <br> e.g. `find n/umbrella s/ntuc`
 **FindExact** | Any combination of 1, 2, 3 or 4 different fields: <br> `findexact n/<name> l/<location>` <br> `findexact n/<name> l/<location> s/<source of stock> sn/<serial number>` <br> e.g. `findexact n/umbrella s/ntuc`
+**Note** | `note sn/<serial number> nt/<note>`
+**NoteDelete** | `notedelete sn/<serial number> ni<note index>`
 **Update** | Any combination of prefixes, at most one of `iq/` or `nq/` may be provided, serial number must be provided. <br> `update sn/<serial number keyword> n/<new name>` <br> `update sn/<serial number keyword> iq/<+/-><increment value>` <br> `update sn/<serial number keyword> nq/<new quantity>` <br> `update sn/<serial number keyword> l/<new location>` <br> `update sn/<serial number keyword> s/<new source>` <br> `update sn/<serial number keyword> n/<new name> iq/<+/-><increment value> l/<new location> s/<new source>` <br> `update sn/<serial number keyword> n/<new name> nq/<new quantity> l/<new location> s/<new source>` <br> e.g. `update sn/NTUC1 n/Apple nq/1000 l/Fruit Section s/Fairprice`
+**print** | `print`
 **Help** | `help`
 **Exit** | `exit`

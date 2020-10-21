@@ -1,7 +1,5 @@
 package seedu.stock.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javafx.collections.ObservableList;
+import seedu.stock.commons.util.FileUtil;
+import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.Stock;
 
@@ -21,6 +21,8 @@ public class PrintCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "CSV file successfully made.";
 
+    public static final String MESSAGE_FAILURE = "Error occurred when generating the csv file. ";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Copies all stocks in the inventory into a csv file.\n"
             + "Parameters: No parameters\n"
             + "Example: " + COMMAND_WORD;
@@ -29,25 +31,24 @@ public class PrintCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
-        requireNonNull(model);
+    public CommandResult execute(Model model) throws CommandException {
+        assert model != null : "Model cannot be null!";
+
         ObservableList<Stock> stockBookList = model.getStockBook().getStockList();
         Path csvFilePath = model.getUserPrefs().getCsvFilePath();
 
         try {
+            System.out.println(model.getUserPrefs().getClass());
+            FileUtil.createIfMissing(csvFilePath);
             BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath.toString()));
             writer.append(makeFileCreationTime());
             writer.append(makeTitleHeader());
-            stockBookList.forEach(stock -> {
-                try {
-                    writer.append(printStock(stock));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+            for (Stock stock: stockBookList) {
+                writer.append(printStock(stock));
+            }
             writer.close();
         } catch (IOException ex) {
-            ex.printStackTrace();
+            throw new CommandException(MESSAGE_FAILURE + ex.getMessage());
         }
 
         return new CommandResult(MESSAGE_SUCCESS);
@@ -59,7 +60,7 @@ public class PrintCommand extends Command {
      * @param stock Stock to be converted into csv format.
      * @return String of the given stock in the csv format.
      */
-    public String printStock(Stock stock) {
+    private String printStock(Stock stock) {
         return new StringBuilder()
                 .append(stock.getSerialNumber()).append(CSV_SEPARATOR)
                 .append(stock.getName()).append(CSV_SEPARATOR)
@@ -75,7 +76,7 @@ public class PrintCommand extends Command {
      *
      * @return String header in the csv format.
      */
-    public String makeTitleHeader() {
+    private String makeTitleHeader() {
         return new StringBuilder()
                 .append("Serial Number").append(CSV_SEPARATOR)
                 .append("Name").append(CSV_SEPARATOR)
@@ -91,7 +92,7 @@ public class PrintCommand extends Command {
      *
      * @return String of the given stock in the csv format.
      */
-    public String makeFileCreationTime() {
+    private String makeFileCreationTime() {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy 'at' HH:mm.");
         Date date = new Date(System.currentTimeMillis());
 
@@ -100,5 +101,12 @@ public class PrintCommand extends Command {
                 .append(System.lineSeparator())
                 .append(System.lineSeparator())
                 .toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        return (other instanceof PrintCommand // instanceof handles nulls
+            );
     }
 }

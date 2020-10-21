@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -24,7 +25,7 @@ public class ModelManager implements Model {
     private final StockBook stockBook;
     private final SerialNumberSetsBook serialNumberSetsBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Stock> filteredStocks;
+    private FilteredList<Stock> filteredStocks;
     private final FilteredList<SerialNumberSet> filteredSerialNumberSets;
 
     /**
@@ -182,6 +183,12 @@ public class ModelManager implements Model {
     public void updateFilteredStockList(Predicate<Stock> predicate) {
         requireNonNull(predicate);
         filteredStocks.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortFilteredStockList(Comparator<Stock> comparator) {
+        stockBook.sortStocks(comparator);
+        filteredStocks = new FilteredList<>(stockBook.getStockList());
     }
 
     @Override

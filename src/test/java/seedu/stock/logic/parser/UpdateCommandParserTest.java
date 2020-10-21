@@ -99,9 +99,11 @@ public class UpdateCommandParserTest {
         String userInput = SERIAL_NUMBER_DESC_APPLE + NAME_DESC_APPLE + NEW_QUANTITY_DESC_APPLE
                 + LOCATION_DESC_APPLE + SOURCE_DESC_APPLE;
 
-        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE).withSource(VALID_SOURCE_APPLE)
-                .withLocation(VALID_LOCATION_APPLE).withQuantity(VALID_QUANTITY_APPLE).build();
+        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase())
+                .withSource(VALID_SOURCE_APPLE.toLowerCase())
+                .withLocation(VALID_LOCATION_APPLE.toLowerCase())
+                .withQuantity(VALID_QUANTITY_APPLE.toLowerCase()).build();
         UpdateCommand expectedCommand = new UpdateCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -109,9 +111,11 @@ public class UpdateCommandParserTest {
         userInput = SERIAL_NUMBER_DESC_APPLE + NAME_DESC_APPLE + INCREMENT_QUANTITY_DESC_APPLE
                 + LOCATION_DESC_APPLE + SOURCE_DESC_APPLE;
 
-        descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE).withSource(VALID_SOURCE_APPLE)
-                .withLocation(VALID_LOCATION_APPLE).withQuantityAdder(VALID_QUANTITY_APPLE).build();
+        descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase())
+                .withSource(VALID_SOURCE_APPLE.toLowerCase())
+                .withLocation(VALID_LOCATION_APPLE.toLowerCase())
+                .withQuantityAdder(VALID_QUANTITY_APPLE.toLowerCase()).build();
         expectedCommand = new UpdateCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -121,25 +125,28 @@ public class UpdateCommandParserTest {
     public void parse_someFieldsSpecified_success() {
         String userInput = SERIAL_NUMBER_DESC_APPLE + NAME_DESC_APPLE + SOURCE_DESC_APPLE;
 
-        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE).withSource(VALID_SOURCE_APPLE).build();
+        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase()).withSource(VALID_SOURCE_APPLE.toLowerCase())
+                .build();
         UpdateCommand expectedCommand = new UpdateCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
 
         userInput = SERIAL_NUMBER_DESC_APPLE + NAME_DESC_APPLE + LOCATION_DESC_APPLE;
 
-        descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE).withLocation(VALID_LOCATION_APPLE).build();
+        descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase())
+                .withLocation(VALID_LOCATION_APPLE.toLowerCase()).build();
         expectedCommand = new UpdateCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
 
         userInput = SERIAL_NUMBER_DESC_APPLE + NAME_DESC_APPLE + NEW_QUANTITY_DESC_APPLE + LOCATION_DESC_APPLE;
 
-        descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE).withLocation(VALID_LOCATION_APPLE)
-                .withQuantity(VALID_QUANTITY_APPLE).build();
+        descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase())
+                .withLocation(VALID_LOCATION_APPLE.toLowerCase())
+                .withQuantity(VALID_QUANTITY_APPLE.toLowerCase()).build();
         expectedCommand = new UpdateCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -149,36 +156,36 @@ public class UpdateCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         String userInput = SERIAL_NUMBER_DESC_APPLE + NAME_DESC_APPLE;
-        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE).build();
+        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase()).build();
         UpdateCommand expectedCommand = new UpdateCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // source
         userInput = SERIAL_NUMBER_DESC_APPLE + SOURCE_DESC_APPLE;
-        descriptor = new UpdateStockDescriptorBuilder().withSource(VALID_SOURCE_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE).build();
+        descriptor = new UpdateStockDescriptorBuilder().withSource(VALID_SOURCE_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase()).build();
         expectedCommand = new UpdateCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // location
         userInput = SERIAL_NUMBER_DESC_APPLE + LOCATION_DESC_APPLE;
-        descriptor = new UpdateStockDescriptorBuilder().withLocation(VALID_LOCATION_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE).build();
+        descriptor = new UpdateStockDescriptorBuilder().withLocation(VALID_LOCATION_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase()).build();
         expectedCommand = new UpdateCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // new quantity
         userInput = SERIAL_NUMBER_DESC_APPLE + NEW_QUANTITY_DESC_APPLE;
-        descriptor = new UpdateStockDescriptorBuilder().withQuantity(VALID_QUANTITY_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE).build();
+        descriptor = new UpdateStockDescriptorBuilder().withQuantity(VALID_QUANTITY_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase()).build();
         expectedCommand = new UpdateCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // increment quantity
         userInput = SERIAL_NUMBER_DESC_APPLE + INCREMENT_QUANTITY_DESC_APPLE;
-        descriptor = new UpdateStockDescriptorBuilder().withQuantityAdder(VALID_QUANTITY_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE).build();
+        descriptor = new UpdateStockDescriptorBuilder().withQuantityAdder(VALID_QUANTITY_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase()).build();
         expectedCommand = new UpdateCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -188,9 +195,11 @@ public class UpdateCommandParserTest {
         String userInput = SERIAL_NUMBER_DESC_APPLE + SERIAL_NUMBER_DESC_BANANA
                 + NAME_DESC_APPLE + NEW_QUANTITY_DESC_APPLE + LOCATION_DESC_APPLE + SOURCE_DESC_APPLE;
 
-        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE, VALID_SERIAL_NUMBER_BANANA).withSource(VALID_SOURCE_APPLE)
-                .withLocation(VALID_LOCATION_APPLE).withQuantity(VALID_QUANTITY_APPLE).build();
+        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase(), VALID_SERIAL_NUMBER_BANANA.toLowerCase())
+                .withSource(VALID_SOURCE_APPLE.toLowerCase())
+                .withLocation(VALID_LOCATION_APPLE.toLowerCase()).withQuantity(VALID_QUANTITY_APPLE.toLowerCase())
+                .build();
         UpdateCommand expectedCommand = new UpdateCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -198,9 +207,11 @@ public class UpdateCommandParserTest {
         userInput = SERIAL_NUMBER_DESC_APPLE + SERIAL_NUMBER_DESC_BANANA
                 + NAME_DESC_APPLE + INCREMENT_QUANTITY_DESC_APPLE + LOCATION_DESC_APPLE + SOURCE_DESC_APPLE;
 
-        descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE, VALID_SERIAL_NUMBER_BANANA).withSource(VALID_SOURCE_APPLE)
-                .withLocation(VALID_LOCATION_APPLE).withQuantityAdder(VALID_QUANTITY_APPLE).build();
+        descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase(), VALID_SERIAL_NUMBER_BANANA.toLowerCase())
+                .withSource(VALID_SOURCE_APPLE.toLowerCase())
+                .withLocation(VALID_LOCATION_APPLE.toLowerCase()).withQuantityAdder(VALID_QUANTITY_APPLE.toLowerCase())
+                .build();
         expectedCommand = new UpdateCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -211,9 +222,9 @@ public class UpdateCommandParserTest {
         String userInput = SERIAL_NUMBER_DESC_APPLE + SERIAL_NUMBER_DESC_BANANA
                 + NAME_DESC_APPLE + SOURCE_DESC_APPLE;
 
-        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE, VALID_SERIAL_NUMBER_BANANA)
-                .withSource(VALID_SOURCE_APPLE).build();
+        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase(), VALID_SERIAL_NUMBER_BANANA.toLowerCase())
+                .withSource(VALID_SOURCE_APPLE.toLowerCase()).build();
         UpdateCommand expectedCommand = new UpdateCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -221,9 +232,9 @@ public class UpdateCommandParserTest {
         userInput = SERIAL_NUMBER_DESC_APPLE + SERIAL_NUMBER_DESC_BANANA
                 + NAME_DESC_APPLE + LOCATION_DESC_APPLE;
 
-        descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE, VALID_SERIAL_NUMBER_BANANA)
-                .withLocation(VALID_LOCATION_APPLE).build();
+        descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase(), VALID_SERIAL_NUMBER_BANANA.toLowerCase())
+                .withLocation(VALID_LOCATION_APPLE.toLowerCase()).build();
         expectedCommand = new UpdateCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -231,9 +242,10 @@ public class UpdateCommandParserTest {
         userInput = SERIAL_NUMBER_DESC_APPLE + SERIAL_NUMBER_DESC_BANANA
                 + NAME_DESC_APPLE + NEW_QUANTITY_DESC_APPLE + LOCATION_DESC_APPLE;
 
-        descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE, VALID_SERIAL_NUMBER_BANANA)
-                .withLocation(VALID_LOCATION_APPLE).withQuantity(VALID_QUANTITY_APPLE).build();
+        descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase(), VALID_SERIAL_NUMBER_BANANA.toLowerCase())
+                .withLocation(VALID_LOCATION_APPLE.toLowerCase()).withQuantity(VALID_QUANTITY_APPLE.toLowerCase())
+                .build();
         expectedCommand = new UpdateCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -243,36 +255,41 @@ public class UpdateCommandParserTest {
     public void parse_multipleSerialNumbersOneFieldSpecified_success() {
         // name
         String userInput = SERIAL_NUMBER_DESC_APPLE + SERIAL_NUMBER_DESC_BANANA + NAME_DESC_APPLE;
-        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE, VALID_SERIAL_NUMBER_BANANA).build();
+        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase(), VALID_SERIAL_NUMBER_BANANA.toLowerCase())
+                .build();
         UpdateCommand expectedCommand = new UpdateCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // source
         userInput = SERIAL_NUMBER_DESC_APPLE + SERIAL_NUMBER_DESC_BANANA + SOURCE_DESC_APPLE;
-        descriptor = new UpdateStockDescriptorBuilder().withSource(VALID_SOURCE_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE, VALID_SERIAL_NUMBER_BANANA).build();
+        descriptor = new UpdateStockDescriptorBuilder().withSource(VALID_SOURCE_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase(), VALID_SERIAL_NUMBER_BANANA.toLowerCase())
+                .build();
         expectedCommand = new UpdateCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // location
         userInput = SERIAL_NUMBER_DESC_APPLE + SERIAL_NUMBER_DESC_BANANA + LOCATION_DESC_APPLE;
-        descriptor = new UpdateStockDescriptorBuilder().withLocation(VALID_LOCATION_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE, VALID_SERIAL_NUMBER_BANANA).build();
+        descriptor = new UpdateStockDescriptorBuilder().withLocation(VALID_LOCATION_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase(), VALID_SERIAL_NUMBER_BANANA.toLowerCase())
+                .build();
         expectedCommand = new UpdateCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // new quantity
         userInput = SERIAL_NUMBER_DESC_APPLE + SERIAL_NUMBER_DESC_BANANA + NEW_QUANTITY_DESC_APPLE;
-        descriptor = new UpdateStockDescriptorBuilder().withQuantity(VALID_QUANTITY_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE, VALID_SERIAL_NUMBER_BANANA).build();
+        descriptor = new UpdateStockDescriptorBuilder().withQuantity(VALID_QUANTITY_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase(), VALID_SERIAL_NUMBER_BANANA.toLowerCase())
+                .build();
         expectedCommand = new UpdateCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // increment quantity
         userInput = SERIAL_NUMBER_DESC_APPLE + SERIAL_NUMBER_DESC_BANANA + INCREMENT_QUANTITY_DESC_APPLE;
-        descriptor = new UpdateStockDescriptorBuilder().withQuantityAdder(VALID_QUANTITY_APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE, VALID_SERIAL_NUMBER_BANANA).build();
+        descriptor = new UpdateStockDescriptorBuilder().withQuantityAdder(VALID_QUANTITY_APPLE.toLowerCase())
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE.toLowerCase(), VALID_SERIAL_NUMBER_BANANA.toLowerCase())
+                .build();
         expectedCommand = new UpdateCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

@@ -20,12 +20,12 @@ public class NoteDeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a note,"
             + " specified by index of note shown in stock display, or all notes of the stock identified "
             + "by the serial number of the stock.\n"
-            + "Special note index to delete ALL notes from stocks is 0.\n"
+            + "Special note index to delete ALL notes from the stock is 0.\n"
             + "Parameters:\n"
             + "sn/ [SERIAL NUMBER]\n"
             + "ni/ [NOTE INDEX]\n"
             + "Example: " + COMMAND_WORD + " sn/111111"
-            + " ni/ 0 ";
+            + " ni/1 ";
 
     private static final String MESSAGE_DELETE_NOTE_SUCCESS = "Deleted note(s) from Stock: %1$s";
     private static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND =

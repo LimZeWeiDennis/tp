@@ -5,8 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.commons.core.Messages;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
@@ -30,6 +33,8 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_DELETE_STOCK_SOME_SUCCESS = "Some serial number(s) are not found.\n"
                                                                     + "Deleted Stock(s): %1$s";
 
+    private static final Logger logger = LogsCenter.getLogger(DeleteCommand.class);
+
     private final Set<SerialNumber> targetSerialNumbers;
 
     /**
@@ -38,6 +43,7 @@ public class DeleteCommand extends Command {
      * @param targetSerialNumbers The list of target serial numbers to delete.
      */
     public DeleteCommand(Set<SerialNumber> targetSerialNumbers) {
+        assert(targetSerialNumbers != null);
         this.targetSerialNumbers = targetSerialNumbers;
     }
 
@@ -77,15 +83,18 @@ public class DeleteCommand extends Command {
         //deletion of multiple stocks is only successful if the number of deleted stocks is equals
         //to number of serial numbers provided, ensuring all given serial numbers are used.
         if (stocksDeleted.size() == targetSerialNumbers.size()) {
+            logger.log(Level.INFO, "All serial numbers found and are deleted successfully");
             return new CommandResult(String.format(MESSAGE_DELETE_STOCK_SUCCESS, stocksAsString(stocksDeleted)));
         } else if (stocksDeleted.size() > 0) {
             String serialNumbersNotFound = String.format(Messages.MESSAGE_SOME_SERIAL_NUMBER_NOT_FOUND,
                     serialNumberListAsString(unknownSerialNumbers));
+            logger.log(Level.INFO, "Some serial numbers found and are deleted successfully");
             return new CommandResult(String.format(MESSAGE_DELETE_STOCK_SOME_SUCCESS, stocksAsString(stocksDeleted))
                                             + "\n" + serialNumbersNotFound);
         } else {
             String serialNumbersNotFound = String.format(Messages.MESSAGE_SERIAL_NUMBER_NOT_FOUND,
                     serialNumberListAsString(unknownSerialNumbers));
+            logger.log(Level.INFO, "All serial numbers are not found. No deletion occurs.");
             throw new CommandException(serialNumbersNotFound);
         }
     }

@@ -2,6 +2,7 @@ package seedu.stock.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -116,5 +117,9 @@ public class StockBook implements ReadOnlyStockBook {
     @Override
     public int hashCode() {
         return stocks.hashCode();
+    }
+
+    public void sortStocks(Comparator<Stock> comparator) {
+        stocks.sortList(comparator);
     }
 }

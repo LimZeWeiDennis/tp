@@ -58,10 +58,14 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the feature `find`.
     * Added documentation for the feature `findexact`.
+    * Added documentation for the feature `note`.
+    * Added documentation for the feature `notedelete`.
     * Checked team members' documentation.
   * Developer Guide:
     * Added documentation for the feature `find`.
     * Added documentation for the feature `findexact`.
+    * Added documentation for the feature `note`.
+    * Added documentation for the feature `notedelete`.
     * Added use cases for feature `find`.
     * Added use cases for the feature `findexact`.
     * Added documentation for `non-functional requirements` and `glossary`sections.

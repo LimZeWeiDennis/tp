@@ -27,7 +27,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -62,7 +62,7 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
@@ -78,9 +78,9 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `StockBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a stock).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -97,7 +97,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/model/Model.java)
 
 The `Model`,
 
@@ -117,7 +117,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -125,7 +125,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.stock.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -169,7 +169,7 @@ Some of the important operations implemented here are:
 * `SuggestionCommandParser#generateHelpSuggestion()` <br>
   Generates the suggestion message for a help command.
 * `SuggestionCommandParser#generateExitSuggestion()` <br>
-  Generates the suggestion message for a ecit command.
+  Generates the suggestion message for an exit command.
 * `SuggestionCommandParser#generateUpdateSuggestion()` <br>
   Generates the suggestion message for an update command.
 * `SuggestionCommandParser#generateDeleteSuggestion()` <br>
@@ -180,6 +180,10 @@ Some of the important operations implemented here are:
   Generates the suggestion message for a find exact command.
 * `SuggestionCommandParser#generateStatisticsSuggestion()` <br>
   Generates the suggestion message for a stats command.
+* `SuggestionCommandParser#generateNoteSuggestion()` <br>
+  Generates the suggestion message for a note command.
+* `SuggestionCommandParser#generateNoteDeleteSuggestion()` <br>
+  Generates the suggestion message for a note delete command.
 
 #### SuggestionUtil
 
@@ -449,7 +453,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Warenager` and the **Actor** is the `user`, unless specified otherwise)
 
-#### Use case: Adding a stock
+#### Use case 1: Adding a stock
 
 **MSS**
 
@@ -485,7 +489,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 
 
-#### Use case: Deleting stocks
+#### Use case 2: Deleting stocks
 
 **MSS**
 
@@ -520,7 +524,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
        Use case resumes at step 2.
 
-#### Use case: Find a stock by name
+#### Use case 3: Find a stock by name
 
 **MSS**
 
@@ -548,7 +552,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case: Find a stock by serial number
+#### Use case 4: Find a stock by serial number
 
 **MSS**
 
@@ -575,7 +579,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case: Find a stock by location stored
+#### Use case 5: Find a stock by location stored
 
 **MSS**
 
@@ -602,7 +606,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case: Find a stock by source of stock
+#### Use case 6: Find a stock by source of stock
 
 **MSS**
 
@@ -629,7 +633,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case: Increment or decrement a stock's quantity
+#### Use case 7: Increment or decrement a stock's quantity
 
 **MSS**
 
@@ -688,7 +692,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Rewrite a stock's quantity
+#### Use case 8: Rewrite a stock's quantity
 
 **MSS**
 
@@ -741,7 +745,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Update the name of a stock.
+#### Use case 9: Update the name of a stock.
 
 **MSS**
 
@@ -776,7 +780,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Update the location of a stock
+#### Use case 10: Update the location of a stock
 
 **MSS**
 
@@ -811,7 +815,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Update the source of a stock
+#### Use case 11: Update the source of a stock
 
 **MSS**
 
@@ -846,7 +850,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Using the stats command
+#### Use case 12: Using the stats command
 
 **MSS**
 
@@ -875,13 +879,184 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-* 1d. The given input contains fields that cannot be found.
+* 1d. The given input is empty.
 
     * 1d1. Warenager shows an error message.
 
      Use case resumes at step 1.
 
-#### Use case: Using the help command
+* 1e. The given input contains fields that cannot be found.
+
+    * 1e1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+#### Use case 13: Adding a note to a stock
+
+**MSS**
+
+1.  User requests to add a note to a stock.
+2.  Warenager adds the note to the stock.
+
+    Use case ends.
+    
+**Extensions**
+* 1a. The given input has an additional header.
+
+    * 1a1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1b. The given input has a wrong header.
+
+    * 1b1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1c. The given input has a missing header.
+
+    * 1c1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1d. The given input is empty.
+
+    * 1d1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1e. The stock cannot be found based on given input.
+
+    * 1e1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+#### Use case 14: Deleting a note from a stock
+
+**MSS**
+
+1.  User requests to delete a note from a stock.
+2.  Warenager deletes the note from the stock.
+
+    Use case ends.
+    
+**Extensions**
+* 1a. The given input has an additional header.
+
+    * 1a1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1b. The given input has a wrong header.
+
+    * 1b1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1c. The given input has a missing header.
+
+    * 1c1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1d. The given input is empty.
+
+    * 1d1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1e. The stock cannot be found based on given input.
+
+    * 1e1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1f. The note cannot be found based on given input.
+
+    * 1f1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+#### Use case 15: Deleting all notes from a stock
+
+**MSS**
+
+1.  User requests to delete all notes from a stock.
+2.  Warenager deletes all notes from the stock.
+
+    Use case ends.
+    
+**Extensions**
+* 1a. The given input has an additional header.
+
+    * 1a1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1b. The given input has a wrong header.
+
+    * 1b1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1c. The given input has a missing header.
+
+    * 1c1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1d. The given input is empty.
+
+    * 1d1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1e. The stock cannot be found based on given input.
+
+    * 1e1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1f. The stock specified has no notes.
+
+    * 1f1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+     
+#### Use case 16: Generating a csv file that contains all stocks
+
+**MSS**
+
+1.  User requests to print stocks in stock book.
+2.  Warenager generates a csv file containing all stocks.
+ 
+    Use case ends.
+ 
+**Extensions**
+ 
+* 1a. The given input contains has the wrong format.
+
+    * 1a1. Warenager shows an error message and suggested command.
+ 
+      Use case resumes at step 1.
+ 
+* 1b. There is an error when creating the csv file.
+ 
+    * 1b1. Warenager shows an error message.
+ 
+      Use case resumes at step 1.
+
+#### Use case 17: Generating a csv file that contains all stocks sorted in desired order
+
+ **MSS**
+ 
+ 1.  User sort stocks in stock book (Use case..) in their desired order.
+ 2.  User request to generate csv file based on the existing stock book (Use case 16).
+ 3.  Warenager generates a csv file containing all stocks.
+ 
+     Use case ends.
+
+#### Use case 18: Using the help command
 
 **MSS**
 
@@ -898,7 +1073,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-#### Use case: Suggestion feature
+#### Use case 19: Suggestion feature
 
 **MSS**
 
@@ -927,7 +1102,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-#### Use case: Exit Warenager
+#### Use case 20: Exit Warenager
 
 **MSS**
 
@@ -1058,21 +1233,86 @@ testers are expected to do more *exploratory* testing.
       Status message shows success of command.
 
    1. Test case: `find l/section 3`<br>
-      Expected: All stocks with storage location containing "section 3" are displayed from the inventory.
+      Expected: All stocks with storage location containing "section" and "3" are displayed from the inventory.
       Status message shows success of command.
 
    1. Test case: `find s/company abc`<br>
-      Expected: All stocks with field source containing "company abc" are displayed from the inventory.
+      Expected: All stocks with field source containing "company" and "abc" are displayed from the inventory.
       Status message shows success of command.
-  
+
+   1. Test case: `find n/umbrella l/section 3`<br>
+         Expected: All stocks with field name containing "umbrella" OR field location containing "section" and "3"
+         are displayed from the inventory.
+         Status message shows success of command.
+ 
    1. Test case: `find 1111111`<br>
       Expected: No stock found due to invalid format from missing field header
       either n/, sn/, l/ or s/.
-      Error details shown in the status message. Status bar remains the same.
+      Error details shown in the status message. Suggestion message will be shown too.
 
-   1. Other incorrect find commands to try: `find`, `find sn/absdsa`
-      (where serial number is not an integer or is a negative integer)<br>
-      Expected: Similar to previous.
+   1. Test case: `find n/umbrella n/company abc`<br>
+      Expected: No stock found due to invalid format from duplicate field header of n/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `find`<br>
+      Expected: No stock found due to missing field headers.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `find q/1111`<br>
+      Expected: No stock found due to invalid field header q/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `find n/`<br>
+      Expected: No stock found due to empty input for field name.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+### Advanced finding a stock
+
+1. Finding a stock from the inventory.
+
+   1. Prerequisites: Multiple stocks in the list. Stock exists in inventory.
+
+   1. Test case: `findexact sn/1111111`<br>
+      Expected: Stock of the serial number 1111111 is displayed from the inventory.
+      Status message shows success of command.
+
+   1. Test case: `findexact n/umbrella`<br>
+      Expected: All stocks with name containing "umbrella" are displayed from the inventory.
+      Status message shows success of command.
+
+   1. Test case: `findexact l/section 3`<br>
+      Expected: All stocks with storage location containing "section" and "3" are displayed from the inventory.
+      Status message shows success of command.
+
+   1. Test case: `findexact s/company abc`<br>
+      Expected: All stocks with field source containing "company" and "abc" are displayed from the inventory.
+      Status message shows success of command.
+
+   1. Test case: `findexact n/umbrella l/section 3`<br>
+         Expected: All stocks with field name containing "umbrella" AND field location containing "section" and "3"
+         are displayed from the inventory.
+         Status message shows success of command.
+   
+   1. Test case: `findexact 1111111`<br>
+      Expected: No stock found due to invalid format from missing field header
+      either n/, sn/, l/ or s/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `findexact n/umbrella n/company abc`<br>
+      Expected: No stock found due to invalid format from duplicate field header of n/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `findexact`<br>
+      Expected: No stock found due to missing field headers.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `findexact q/1111`<br>
+      Expected: No stock found due to invalid field header q/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `findexact n/`<br>
+      Expected: No stock found due to empty input for field name.
+      Error details shown in the status message. Suggestion message will be shown too.
 
 ### Updating a stock
 
@@ -1132,6 +1372,75 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect statistics commands to try: `stats`, `stats st/absdsa`, `stats st/source st/source`
       Expected: Similar to previous.
+
+### Adding note to stock
+
+1. Adding a note to a stock.
+
+    1. Test case: `note sn/ntuc1 nt/first note`
+    Expected: Note is added to the stock with serial number ntuc1 and displayed in the notes column for the stock.
+    Details of the stock with successful note added is shown in status message.
+   
+   1. Test case: `note 1111111`<br>
+      Expected: No note added due to invalid format from missing field headers sn/ and nt/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `note sn/umbrella1 sn/company1 nt/first note`<br>
+      Expected: No note added due to invalid format from duplicate field header of sn/.
+      Error details shown in the status message. Status bar remains the same.
+
+   1. Test case: `note`<br>
+      Expected: No note added due to missing field headers.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `note q/1111`<br>
+      Expected: No note added due to invalid field header q/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `note sn/ntuc1 nt/`<br>
+      Expected: No note added due to empty input for field note.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+### Deleting a note from stock
+
+1. Deleting a note from stock.
+
+    1. Test case: `notedelete sn/ntuc1 ni/1`
+    Expected: Note with index 1 is deleted from the stock with serial number ntuc1
+    and display is removed from the notes column for the stock.
+    Details of the stock with successful note deleted is shown in status message.
+
+   1. Test case: `notedelete sn/ntuc1 ni/noninteger`<br>
+      Expected: No note deleted as note index given is not a positive integer.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete sn/ntuc1 ni/-99`<br>
+      Expected: No note deleted as note index given is not a positive integer.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete sn/ntuc1 ni/9999`<br>
+      Expected: No note deleted (if stock does not have note with index 9999) as note index given is not found.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete 1111111`<br>
+      Expected: No note deleted due to invalid format from missing field headers sn/ and ni/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete sn/umbrella1 sn/company1 ni/2`<br>
+      Expected: No note deleted due to invalid format from duplicate field header of sn/.
+      Error details shown in the status message. Status bar remains the same.
+
+   1. Test case: `notedelete`<br>
+      Expected: No note deleted due to missing field headers.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete q/1111`<br>
+      Expected: No note deleted due to invalid field header q/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete sn/ntuc1 ni/`<br>
+      Expected: No note delete due to empty input for field note index.
+      Error details shown in the status message. Suggestion message will be shown too.
 
 ### Saving data
 

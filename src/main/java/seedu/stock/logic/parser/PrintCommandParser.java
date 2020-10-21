@@ -25,7 +25,7 @@ public class PrintCommandParser implements Parser<PrintCommand> {
         return new PrintCommand();
     }
 
-    public boolean hasNoArguments(String args) {
+    private boolean hasNoArguments(String args) {
         return args.length() == 0;
     }
 }
